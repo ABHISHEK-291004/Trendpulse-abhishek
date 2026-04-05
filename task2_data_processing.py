@@ -1,8 +1,6 @@
 
 # TrendPulse — Task 2: Data Cleaning & CSV Export
-# Author: Abhishek Choudhary
-#
-# This script picks up where Task 1 left off.
+# Name: Abhishek Choudhary
 # We load the raw JSON file, clean it up step by step,
 # and save a tidy CSV that Task 3 can work with directly.
 
@@ -12,7 +10,6 @@ import json
 import pandas as pd
 
 
-# ─────────────────────────────────────────────
 # STEP 1 — FIND AND LOAD THE JSON FILE
 # ─────────────────────────────────────────────
 
@@ -43,11 +40,9 @@ print(f"Loaded {len(df)} stories from {json_path}")
 print(f"Columns found: {list(df.columns)}\n")
 
 
-# ─────────────────────────────────────────────
 # STEP 2 — CLEAN THE DATA
 # ─────────────────────────────────────────────
 # We apply four cleaning rules in sequence and
-# print the row count after each one so we can
 # see exactly how much data each step removes.
 
 # --- 2a: Remove duplicate post IDs ---
@@ -92,7 +87,6 @@ df["title"] = df["title"].str.strip()
 print(f"\nCleaning complete. {len(df)} rows remaining.\n")
 
 
-# ─────────────────────────────────────────────
 # STEP 3 — SAVE THE CLEANED DATA AS A CSV
 # ─────────────────────────────────────────────
 
@@ -109,11 +103,6 @@ df.to_csv(output_path, index=False, encoding="utf-8")
 print(f"Saved {len(df)} rows to {output_path}")
 
 
-# ─────────────────────────────────────────────
-# BONUS: PRINT A CATEGORY SUMMARY
-# ─────────────────────────────────────────────
-# Quick breakdown so we can see the spread across categories.
-# value_counts() sorts highest to lowest by default.
 print("\nStories per category:")
 category_counts = df["category"].value_counts()
 for category, count in category_counts.items():
