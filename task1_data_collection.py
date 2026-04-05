@@ -1,4 +1,4 @@
-# task1_data_collection.py
+
 # TrendPulse — Task 1: Data Collection
 # Author: Abhishek Choudhary
 
