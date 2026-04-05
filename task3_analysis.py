@@ -2,7 +2,6 @@
 # TrendPulse — Task 3: Analysis with Pandas & NumPy
 # Name: Abhishek Choudhary
 #
-# We load the cleaned CSV from Task 2 and run some real analysis on it.
 # NumPy handles the number-crunching, Pandas handles the structure.
 # At the end we add two new columns and save a new CSV for Task 4.
 
@@ -10,7 +9,6 @@ import pandas as pd
 import numpy as np
 
 
-# ─────────────────────────────────────────────
 # STEP 1 — LOAD AND EXPLORE THE DATA
 # ─────────────────────────────────────────────
 
@@ -25,7 +23,6 @@ print("First 5 rows:")
 print(df.head(5).to_string(index=False))
 print()
 
-# Quick overall averages — good sanity check before going deeper
 avg_score    = df["score"].mean()
 avg_comments = df["num_comments"].mean()
 
@@ -33,11 +30,9 @@ print(f"Average score   : {avg_score:.2f}")
 print(f"Average comments: {avg_comments:.2f}")
 
 
-# ─────────────────────────────────────────────
 # STEP 2 — NUMPY STATS
 # ─────────────────────────────────────────────
 # We pull the score column out as a plain NumPy array
-# so we can use numpy functions directly on it.
 
 print("\n--- NumPy Stats ---")
 
@@ -75,19 +70,16 @@ most_commented_count = df.loc[most_commented_idx, "num_comments"]
 print(f"\nMost commented story: \"{most_commented_title}\"  — {most_commented_count} comments")
 
 
-# ─────────────────────────────────────────────
 # STEP 3 — ADD NEW COLUMNS
 # ─────────────────────────────────────────────
 
 # engagement: how much discussion a story generates per upvote.
-# We add 1 to score in the denominator to avoid division-by-zero
 # for any edge-case stories that somehow have a score of 0.
 df["engagement"] = df["num_comments"] / (df["score"] + 1)
 
 # Round to 4 decimal places so the CSV stays readable
 df["engagement"] = df["engagement"].round(4)
 
-# is_popular: True if this story scored above the overall average.
 # We already computed avg_score above — reuse it here.
 df["is_popular"] = df["score"] > avg_score
 
@@ -99,7 +91,6 @@ print()
 print(df[["title", "score", "engagement", "is_popular"]].head(5).to_string(index=False))
 
 
-# ─────────────────────────────────────────────
 # STEP 4 — SAVE THE UPDATED DATAFRAME
 # ─────────────────────────────────────────────
 
