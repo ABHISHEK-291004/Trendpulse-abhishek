@@ -12,9 +12,7 @@ import json
 import pandas as pd
 
 
-# ─────────────────────────────────────────────
 # STEP 1 — FIND AND LOAD THE JSON FILE
-# ─────────────────────────────────────────────
 
 # Task 1 saves files named like data/trends_YYYYMMDD.json
 # We use glob to find whichever date file is present
@@ -43,9 +41,8 @@ print(f"Loaded {len(df)} stories from {json_path}")
 print(f"Columns found: {list(df.columns)}\n")
 
 
-# ─────────────────────────────────────────────
 # STEP 2 — CLEAN THE DATA
-# ─────────────────────────────────────────────
+
 # We apply four cleaning rules in sequence and
 # print the row count after each one so we can
 # see exactly how much data each step removes.
@@ -92,9 +89,7 @@ df["title"] = df["title"].str.strip()
 print(f"\nCleaning complete. {len(df)} rows remaining.\n")
 
 
-# ─────────────────────────────────────────────
 # STEP 3 — SAVE THE CLEANED DATA AS A CSV
-# ─────────────────────────────────────────────
 
 # Make sure the data/ folder exists (it should from Task 1,
 # but we check anyway to be safe).
@@ -109,9 +104,9 @@ df.to_csv(output_path, index=False, encoding="utf-8")
 print(f"Saved {len(df)} rows to {output_path}")
 
 
-# ─────────────────────────────────────────────
+
 # BONUS: PRINT A CATEGORY SUMMARY
-# ─────────────────────────────────────────────
+
 # Quick breakdown so we can see the spread across categories.
 # value_counts() sorts highest to lowest by default.
 print("\nStories per category:")
