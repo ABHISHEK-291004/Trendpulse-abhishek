@@ -10,9 +10,8 @@ import pandas as pd
 import numpy as np
 
 
-# ─────────────────────────────────────────────
 # STEP 1 — LOAD AND EXPLORE THE DATA
-# ─────────────────────────────────────────────
+
 
 # Read in the cleaned CSV that Task 2 produced
 df = pd.read_csv("data/trends_clean.csv")
@@ -33,9 +32,8 @@ print(f"Average score   : {avg_score:.2f}")
 print(f"Average comments: {avg_comments:.2f}")
 
 
-# ─────────────────────────────────────────────
 # STEP 2 — NUMPY STATS
-# ─────────────────────────────────────────────
+
 # We pull the score column out as a plain NumPy array
 # so we can use numpy functions directly on it.
 
@@ -44,7 +42,7 @@ print("\n--- NumPy Stats ---")
 scores = df["score"].to_numpy()
 
 # Mean, median, std give us a picture of how scores are distributed.
-# On HN a small number of stories get huge upvotes — so mean > median usually.
+
 mean_score   = np.mean(scores)
 median_score = np.median(scores)
 std_score    = np.std(scores)
@@ -75,12 +73,10 @@ most_commented_count = df.loc[most_commented_idx, "num_comments"]
 print(f"\nMost commented story: \"{most_commented_title}\"  — {most_commented_count} comments")
 
 
-# ─────────────────────────────────────────────
 # STEP 3 — ADD NEW COLUMNS
-# ─────────────────────────────────────────────
+
 
 # engagement: how much discussion a story generates per upvote.
-# We add 1 to score in the denominator to avoid division-by-zero
 # for any edge-case stories that somehow have a score of 0.
 df["engagement"] = df["num_comments"] / (df["score"] + 1)
 
@@ -99,9 +95,8 @@ print()
 print(df[["title", "score", "engagement", "is_popular"]].head(5).to_string(index=False))
 
 
-# ─────────────────────────────────────────────
 # STEP 4 — SAVE THE UPDATED DATAFRAME
-# ─────────────────────────────────────────────
+
 
 # Write out a new CSV — Task 4 will load this one for visualisation.
 # index=False so pandas doesn't write its own row numbers into the file.
