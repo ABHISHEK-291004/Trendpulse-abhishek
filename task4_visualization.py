@@ -14,9 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
 
-# ─────────────────────────────────────────────
 # STEP 1 — SETUP
-# ─────────────────────────────────────────────
 
 # Load the CSV that Task 3 produced (99 rows, 9 columns)
 df = pd.read_csv("data/trends_analysed.csv")
@@ -40,10 +38,9 @@ def shorten(title, limit=50):
     return title[:limit] + "..." if len(title) > limit else title
 
 
-# ─────────────────────────────────────────────
 # CHART 1 — TOP 10 STORIES BY SCORE
 # Horizontal bar chart so the titles are readable
-# ─────────────────────────────────────────────
+
 
 # Sort descending, grab the top 10
 top10 = df.sort_values("score", ascending=False).head(10).copy()
@@ -77,11 +74,9 @@ plt.savefig("outputs/chart1_top_stories.png", dpi=150)
 plt.close(fig1)     # close so it doesn't bleed into the next chart
 print("Saved: outputs/chart1_top_stories.png")
 
-
-# ─────────────────────────────────────────────
 # CHART 2 — STORIES PER CATEGORY
 # Plain bar chart with each category in its own colour
-# ─────────────────────────────────────────────
+
 
 # Count how many stories we have per category
 cat_counts = df["category"].value_counts().sort_values(ascending=False)
@@ -108,10 +103,8 @@ plt.close(fig2)
 print("Saved: outputs/chart2_categories.png")
 
 
-# ─────────────────────────────────────────────
 # CHART 3 — SCORE vs COMMENTS (SCATTER)
 # Popular vs non-popular shown in different colours
-# ─────────────────────────────────────────────
 
 # Split into two groups based on the is_popular column Task 3 added
 popular     = df[df["is_popular"] == True]
@@ -141,10 +134,10 @@ plt.close(fig3)
 print("Saved: outputs/chart3_scatter.png")
 
 
-# ─────────────────────────────────────────────
+
 # BONUS — COMBINED DASHBOARD
 # All 3 charts side by side in one figure
-# ─────────────────────────────────────────────
+
 
 fig, axes = plt.subplots(1, 3, figsize=(24, 8))
 fig.suptitle("TrendPulse Dashboard", fontsize=20, fontweight="bold", y=1.01)
